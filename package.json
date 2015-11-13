@@ -1,0 +1,37 @@
+{
+  "name": "videojs-react",
+  "version": "0.1.0",
+  "description": "React Component for video.js",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattotodd/videojs-react.git"
+  },
+  "keywords": [
+    "video.js",
+    "react"
+  ],
+  "author": "mattotodd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattotodd/videojs-react/issues"
+  },
+  "homepage": "https://github.com/mattotodd/videojs-react#readme",
+  "dependencies": {
+    "classnames": "^2.2.0",
+    "lodash": "^3.10.1",
+    "react": "^0.14.2",
+    "video.js": "^5.0.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.1.19",
+    "babel-loader": "^6.1.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "gulp": "^3.9.0",
+    "gulp-webpack": "^1.5.0"
+  }
+}
