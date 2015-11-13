@@ -9,6 +9,6 @@ import ReactVideoJsComponent from '../video.jsx'
 
 
 ReactDOM.render(
-    <ReactVideoJsComponent src="http://jmrehashdev-env.elasticbeanstalk.com/crdr/_8ada1215f3934cc8895eb75eaaebd3e1/recording.webm" />,
+    <ReactVideoJsComponent src="./big-buck-bunny_trailer.webm" />,
     document.getElementById('component-container')
 );
