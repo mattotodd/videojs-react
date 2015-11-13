@@ -2,7 +2,7 @@
   "name": "videojs-react",
   "version": "0.1.0",
   "description": "React Component for video.js",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "build": "gulp build"
   },

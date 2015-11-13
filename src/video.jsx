@@ -300,8 +300,3 @@ ReactVideoJsComponent.defaultProps = {
 };
 
 ReactVideoJsComponent.displayName = ReactVideoJsComponent.constructor.name;
-
-ReactDOM.render(
-    <ReactVideoJsComponent src="http://jmrehashdev-env.elasticbeanstalk.com/crdr/_8ada1215f3934cc8895eb75eaaebd3e1/recording.webm" />,
-    document.getElementById('component-container')
-);
