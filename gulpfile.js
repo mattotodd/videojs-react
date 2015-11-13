@@ -2,7 +2,7 @@
 
 var require = require || {};
 const gulp = require('gulp');
-const webpack = require('gulp-webpack');
+const webpack = require('webpack-stream');
  
 gulp.task('scripts', () => {
     return gulp.src('./src/video.jsx')
