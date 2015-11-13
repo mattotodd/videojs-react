@@ -1,8 +1,8 @@
 'use strict';
 
 var require = require || {};
-const gulp = require('gulp');
-const webpack = require('webpack-stream');
+var gulp = require('gulp');
+var webpack = require('webpack-stream');
  
 var webpack_module = {
 	loaders: [
@@ -17,13 +17,13 @@ var webpack_module = {
 		extensions: ['', '.js', '.jsx', '.json']
 	}
 }
-gulp.task('scripts', () => {
+gulp.task('scripts', function()  {
     gulp.src('./src/video.jsx')
 	  .pipe(webpack({
 	    watch: false,
 	    module: webpack_module,
 	    output: {
-        	filename: 'index.js',
+        	filename: 'video.js',
         }
 	  }))
 	  .pipe(gulp.dest('lib/'));
