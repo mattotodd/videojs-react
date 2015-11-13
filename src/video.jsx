@@ -4,6 +4,7 @@
 'use strict';
 
 import React from 'react';
+import  ReactDOM from 'react-dom';
 import cx from 'classnames';
 import vjs from 'video.js';
 import lodash from 'lodash';
@@ -13,8 +14,8 @@ var _defaults = lodash.defaults;
 
 import Marker from './marker';
 
-const DEFAULT_HEIGHT = 800;
-const DEFAULT_WIDTH = 600;
+const DEFAULT_HEIGHT = 540;
+const DEFAULT_WIDTH = 960;
 const DEFAULT_ASPECT_RATIO = (9 / 16);
 const DEFAULT_ADJUSTED_SIZE = 0;
 const DEFAULT_RESIZE_DEBOUNCE_TIME = 500;
@@ -87,7 +88,7 @@ export default class ReactVideoJsComponent extends React.Component {
   }
 
   getVideoPlayerEl() {
-    return React.findDOMNode(this.refs.videoPlayer);
+    return ReactDOM.findDOMNode(this.refs.videoPlayer);
   }
 
   getVideoPlayerOptions() {
@@ -138,7 +139,10 @@ export default class ReactVideoJsComponent extends React.Component {
     var src = this.props.src;
     var options = this.getVideoPlayerOptions();
 
-    this._player = vjs(this.getVideoPlayerEl(), options);
+    var playerEl =this.getVideoPlayerEl()
+    playerEl.removeAttribute('data-reactid');
+
+    this._player = vjs(playerEl, options);
 
     var player = this._player;
 
@@ -149,11 +153,6 @@ export default class ReactVideoJsComponent extends React.Component {
     });
 
     player.src(src);
-
-
-    var marker = player.controlBar.progressControl.addChild('Marker');
-
-    //marker.addClass("html-yada");
 
     if (this.props.endlessMode) {
       this.addEndlessMode();
@@ -217,10 +216,6 @@ export default class ReactVideoJsComponent extends React.Component {
   }
 
   handleVideoPlayerReady() {
-    this
-      .getVideoPlayerEl()
-      .parentElement
-      .removeAttribute('data-reactid');
 
     if (this.props.resize) {
       this.handleVideoPlayerResize();
@@ -306,7 +301,7 @@ ReactVideoJsComponent.defaultProps = {
 
 ReactVideoJsComponent.displayName = ReactVideoJsComponent.constructor.name;
 
-React.render(
+ReactDOM.render(
     <ReactVideoJsComponent src="http://jmrehashdev-env.elasticbeanstalk.com/crdr/_8ada1215f3934cc8895eb75eaaebd3e1/recording.webm" />,
     document.getElementById('component-container')
 );
