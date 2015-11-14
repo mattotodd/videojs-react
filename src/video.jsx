@@ -12,8 +12,6 @@ var _forEach = lodash.forEach;
 var _debounce = lodash.debounce;
 var _defaults = lodash.defaults;
 
-import Marker from './marker';
-
 const DEFAULT_HEIGHT = 540;
 const DEFAULT_WIDTH = 960;
 const DEFAULT_ASPECT_RATIO = (9 / 16);
