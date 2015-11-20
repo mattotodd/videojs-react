@@ -12,6 +12,9 @@ var _forEach = lodash.forEach;
 var _debounce = lodash.debounce;
 var _defaults = lodash.defaults;
 
+import MarkerBar from './markerBar';
+import Marker from './marker';
+
 const DEFAULT_HEIGHT = 540;
 const DEFAULT_WIDTH = 960;
 const DEFAULT_ASPECT_RATIO = (9 / 16);
@@ -22,6 +25,7 @@ const DEFAULT_VIDEO_OPTIONS = {
   autoplay: true,
   controls: true
 };
+
 
 function noop() {}
 
@@ -79,6 +83,15 @@ export default class ReactVideoJsComponent extends React.Component {
 
   componentWillUnmount() {
     this.unmountVideoPlayer();
+  }
+
+  drawMarker(markerOptions) {
+    if(!this._markerBar){
+      this._markerBar = this._player.controlBar.progressControl.addChild(new MarkerBar());
+    }
+
+    var marker = new Marker(this._player, markerOptions);
+    this._markerBar.addChild(marker);
   }
 
   getVideoPlayer() {
@@ -143,6 +156,8 @@ export default class ReactVideoJsComponent extends React.Component {
     this._player = vjs(playerEl, options);
 
     var player = this._player;
+
+    _forEach(this.props.markers, this.drawMarker.bind(this));
 
     player.ready(this.handleVideoPlayerReady.bind(this));
 
@@ -220,6 +235,14 @@ export default class ReactVideoJsComponent extends React.Component {
       this.addResizeEventListener();
     }
 
+    if(this.props.startWithControlBar){
+      this._player.bigPlayButton.hide();
+      this._player.controlBar.show();
+      this._player.userActive(true);
+      this._player.play();
+      this._player.pause();
+    }
+
     this.props.onReady();
   }
 
@@ -280,6 +303,8 @@ ReactVideoJsComponent.propTypes = {
     }),
     vjsDefaultSkin: React.PropTypes.bool,
     vjsBigPlayCentered: React.PropTypes.bool,
+    startWithControlBar: React.PropTypes.bool,
+    markers: React.PropTypes.arrayOf(React.PropTypes.object),
     children: React.PropTypes.element,
     dispose: React.PropTypes.bool,
     onNextVideo: React.PropTypes.func
@@ -294,6 +319,8 @@ ReactVideoJsComponent.defaultProps = {
     resizeOptions: {},
     vjsDefaultSkin: true,
     vjsBigPlayCentered: true,
+    startWithControlBar: false,
+    markers: [],
     onNextVideo: noop
 };
 
